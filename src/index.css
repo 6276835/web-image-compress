@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-apple-gray-50 text-apple-gray-900 font-sf;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+  }
+  
+  .apple-button {
+    @apply px-6 py-3 rounded-2xl font-medium transition-all duration-200 
+           hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .apple-button-primary {
+    @apply apple-button bg-apple-blue text-white hover:bg-apple-blue/90 focus:ring-apple-blue/50;
+  }
+  
+  .apple-button-secondary {
+    @apply apple-button bg-apple-gray-100 text-apple-gray-700 hover:bg-apple-gray-200 focus:ring-apple-gray-300;
+  }
+  
+  .apple-card {
+    @apply bg-white rounded-3xl shadow-apple border border-apple-gray-100/50;
+  }
+  
+  .apple-input {
+    @apply w-full px-4 py-3 rounded-2xl border border-apple-gray-200 
+           focus:outline-none focus:ring-2 focus:ring-apple-blue/50 focus:border-apple-blue
+           transition-all duration-200 bg-white;
+  }
+  
+  .drag-area {
+    @apply border-2 border-dashed border-apple-gray-300 rounded-3xl 
+           transition-all duration-200 hover:border-apple-blue/50;
+  }
+  
+  .drag-area.dragover {
+    @apply border-apple-blue bg-apple-blue/5;
+  }
+} 

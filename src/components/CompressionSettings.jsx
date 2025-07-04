@@ -33,7 +33,7 @@ function CompressionSettings({ settings, onSettingsChange, onCompressAll, compre
   }
 
   return (
-    <div className="apple-card p-6">
+    <div className="apple-card p-6 bg-white/60 backdrop-blur-glass border border-white/30 rounded-2xl shadow-apple-glass">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <Settings className="w-5 h-5 text-apple-gray-600" />
@@ -43,7 +43,7 @@ function CompressionSettings({ settings, onSettingsChange, onCompressAll, compre
         <button
           onClick={onCompressAll}
           disabled={compressedCount === totalCount}
-          className="apple-button-primary inline-flex items-center gap-2"
+          className="apple-button-primary inline-flex items-center gap-2 transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           <Zap className="w-4 h-4" />
           压缩全部 ({compressedCount}/{totalCount})

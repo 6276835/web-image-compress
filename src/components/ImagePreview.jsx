@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Download, Trash2, Image, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 
 function ImagePreview({ image, onCompress, onRemove, onDownload, settings }) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isOriginalExpanded, setIsOriginalExpanded] = useState(false)
+  const [isCompressedExpanded, setIsCompressedExpanded] = useState(false)
 
   const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 B'
@@ -101,17 +102,26 @@ function ImagePreview({ image, onCompress, onRemove, onDownload, settings }) {
             <img
               src={image.originalUrl}
               alt="原图"
-              className={`w-full rounded-2xl border border-apple-gray-200 transition-all duration-200 ${
-                isExpanded ? 'cursor-zoom-out' : 'cursor-zoom-in hover:shadow-apple-lg'
-              }`}
-              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full rounded-2xl border border-apple-gray-200 transition-all duration-300 cursor-zoom-in hover:scale-105 hover:shadow-apple-lg"
+              onClick={() => setIsOriginalExpanded(true)}
             />
-            
-            {!isExpanded && (
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-2xl transition-colors flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium">
-                  点击放大
-                </div>
+            {isOriginalExpanded && (
+              <div
+                className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center animate-fade-in"
+                onClick={() => setIsOriginalExpanded(false)}
+              >
+                <img
+                  src={image.originalUrl}
+                  alt="原图放大预览"
+                  className="max-w-3xl max-h-[90vh] rounded-2xl shadow-apple-xl transition-transform duration-300"
+                  onClick={e => e.stopPropagation()}
+                />
+                <button
+                  className="absolute top-8 right-8 text-white text-2xl bg-black/40 rounded-full px-3 py-1 hover:bg-black/70 transition"
+                  onClick={() => setIsOriginalExpanded(false)}
+                >
+                  ×
+                </button>
               </div>
             )}
           </div>
@@ -137,27 +147,40 @@ function ImagePreview({ image, onCompress, onRemove, onDownload, settings }) {
           
           <div className="relative group">
             {image.isCompressed ? (
-              <img
-                src={image.compressedUrl}
-                alt="压缩后"
-                className={`w-full rounded-2xl border border-apple-gray-200 transition-all duration-200 ${
-                  isExpanded ? 'cursor-zoom-out' : 'cursor-zoom-in hover:shadow-apple-lg'
-                }`}
-                onClick={() => setIsExpanded(!isExpanded)}
-              />
+              <>
+                <img
+                  src={image.compressedUrl}
+                  alt="压缩后"
+                  className={`w-full rounded-2xl border border-apple-gray-200 transition-all duration-300 ${
+                    isCompressedExpanded ? 'cursor-zoom-out scale-110' : 'cursor-zoom-in hover:scale-105 hover:shadow-apple-lg'
+                  }`}
+                  onClick={() => setIsCompressedExpanded(true)}
+                />
+                {isCompressedExpanded && (
+                  <div
+                    className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center animate-fade-in"
+                    onClick={() => setIsCompressedExpanded(false)}
+                  >
+                    <img
+                      src={image.compressedUrl}
+                      alt="放大预览"
+                      className="max-w-3xl max-h-[90vh] rounded-2xl shadow-apple-xl transition-transform duration-300"
+                      onClick={e => e.stopPropagation()}
+                    />
+                    <button
+                      className="absolute top-8 right-8 text-white text-2xl bg-black/40 rounded-full px-3 py-1 hover:bg-black/70 transition"
+                      onClick={() => setIsCompressedExpanded(false)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="w-full h-48 bg-apple-gray-100 rounded-2xl flex items-center justify-center">
                 <div className="text-center text-apple-gray-400">
                   <Image className="w-8 h-8 mx-auto mb-2" />
                   <p className="text-sm">点击压缩按钮开始处理</p>
-                </div>
-              </div>
-            )}
-            
-            {image.isCompressed && !isExpanded && (
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-2xl transition-colors flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium">
-                  点击放大
                 </div>
               </div>
             )}

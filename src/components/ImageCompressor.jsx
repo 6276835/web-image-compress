@@ -67,8 +67,8 @@ function ImageCompressor({ onFileUpload, disabled }) {
   return (
     <div className="space-y-4">
       <div
-        className={`drag-area p-12 text-center cursor-pointer transition-all duration-200 ${
-          isDragOver ? 'dragover' : ''
+        className={`drag-area p-12 text-center cursor-pointer transition-all duration-200 bg-white/60 backdrop-blur-glass border border-white/30 rounded-2xl shadow-apple-glass ${
+          isDragOver ? 'ring-4 ring-apple-blue/40 scale-105' : ''
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -76,8 +76,8 @@ function ImageCompressor({ onFileUpload, disabled }) {
         onClick={handleClick}
       >
         <div className="space-y-4">
-          <div className="w-16 h-16 bg-apple-blue/10 rounded-full flex items-center justify-center mx-auto">
-            <Upload className="w-8 h-8 text-apple-blue" />
+          <div className={`w-16 h-16 bg-apple-blue/10 rounded-full flex items-center justify-center mx-auto transition-all duration-300 ${isDragOver ? 'shadow-lg animate-pulse scale-110' : ''}`}> 
+            <Upload className={`w-8 h-8 ${isDragOver ? 'text-apple-blue animate-bounce' : 'text-apple-blue'}`} />
           </div>
           
           <div>
@@ -90,7 +90,7 @@ function ImageCompressor({ onFileUpload, disabled }) {
             
             <button
               type="button"
-              className="apple-button-primary inline-flex items-center gap-2"
+              className="apple-button-primary inline-flex items-center gap-2 transition-transform duration-200 hover:scale-105 active:scale-95"
               disabled={disabled}
             >
               <Image className="w-5 h-5" />

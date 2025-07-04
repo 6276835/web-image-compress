@@ -112,7 +112,7 @@ function App() {
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         {/* 上传区域 */}
         <div className="mb-8">
-          <div className="apple-card p-8">
+          <div className="apple-card p-8 bg-white/60 backdrop-blur-glass border border-white/30 rounded-2xl shadow-apple-glass">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-semibold text-apple-gray-900 mb-2">
                 图片压缩工具
@@ -145,7 +145,7 @@ function App() {
         {/* 统计信息 */}
         {images.length > 0 && (
           <div className="mb-8">
-            <div className="apple-card p-6">
+            <div className="apple-card p-6 bg-white/60 backdrop-blur-glass border border-white/30 rounded-2xl shadow-apple-glass">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
                 <div>
                   <div className="text-2xl font-semibold text-apple-gray-900">
@@ -197,7 +197,7 @@ function App() {
           <div className="mt-8 text-center">
             <button
               onClick={handleDownloadAll}
-              className="apple-button-primary inline-flex items-center gap-2"
+              className="apple-button-primary inline-flex items-center gap-2 transition-transform duration-200 hover:scale-105 active:scale-95"
             >
               <Download size={20} />
               下载所有压缩图片

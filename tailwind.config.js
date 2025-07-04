@@ -14,6 +14,9 @@ export default {
         'apple-orange': '#FF9500',
         'apple-purple': '#AF52DE',
         'apple-pink': '#FF2D92',
+        'apple-mint': '#00C7BE',
+        'apple-cyan': '#32ADE6',
+        'apple-indigo': '#5856D6',
         'apple-gray': {
           50: '#F2F2F7',
           100: '#E5E5EA',
@@ -39,9 +42,11 @@ export default {
         'apple': '0 4px 20px rgba(0, 0, 0, 0.08)',
         'apple-lg': '0 8px 32px rgba(0, 0, 0, 0.12)',
         'apple-xl': '0 12px 48px rgba(0, 0, 0, 0.16)',
+        'apple-glass': '0 8px 32px 0 rgba(0,0,0,0.10)',
       },
       backdropBlur: {
         'xs': '2px',
+        'glass': '12px',
       }
     },
   },
